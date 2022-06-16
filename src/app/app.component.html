@@ -1,5 +1,5 @@
 <div class="container">
-  <form #emailForm="ngForm">
+  <form (ngSubmit)="onSubmit()" #emailForm="ngForm">
     <input
       type="email"
       pattern=".+@.+\..+"
@@ -18,10 +18,14 @@
         Please enter a valid email
       </div>
     </ng-container>
-    
+    <button 
+      [disabled]="emailForm.invalid" 
+      class="button is-primary"
+    >
+      Submit
+    </button>
   </form>  
 </div>
 <hr />
 <div>Is form valid {{ emailForm.valid}}</div>
 <div>Email values is {{emailForm.value | json}}</div>
-<div>Email validation errors: {{emailForm.controls['email'].errors | json}}</div>
